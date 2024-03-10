@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import { Login } from '../util/auth';
 import LoadingOverlay from '../components/ui/LoadingOverlay';
@@ -9,10 +9,13 @@ function LoginScreen() {
 
     const [isAuthenticating, setIsAuthenticating] = useState(false);
 
+    const authCtx = useContext(AuthContent);
+
     async function loginHandler({ email, password }) {
         setIsAuthenticating(true);
         try {
-            await Login(email, password);
+            const token = await Login(email, password);
+            authCtx.authenticate(token);
         } catch (error) {
             Alert.alert('Authentication failed!', 'Could not log you in. Please check your credentials or try again later!');
         }

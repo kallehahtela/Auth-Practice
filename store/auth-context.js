@@ -1,13 +1,13 @@
 import { createContext, useState } from "react";
 
-export const AunthContext = createContext({
+export const AuthContext = createContext({
     token: '',
     isAuthenticated: false,
     authenticate: (token) => {},
     logout: () => {},
 });
 
-function AunthContextProvider({ children }) {
+function AuthContextProvider({ children }) {
     const [authToken, setAuthToken] = useState();
 
     function authenticate(token) {
@@ -26,8 +26,8 @@ function AunthContextProvider({ children }) {
     };
 
  return (
-    <AunthContext.Provider value={value}>{children}</AunthContext.Provider>
+    <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
  );
 }
 
-export default AunthContextProvider;
+export default AuthContextProvider;
