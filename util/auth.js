@@ -8,19 +8,18 @@ async function Authenticate(mode, email, password) {
     const response = await axios.post(url, {
         email: email,
         password: password,
-        returnSecureToken: true
-    });
-
-    //console.log(response.data);
-    const token = response.data.idToken;
-
-    return token;
-}
-
-export function createUser(email, password) {
-    return Authenticate('signUp', email, password);
-}
-
-export function Login(email, password) {
-    return Authenticate('signInWithPassword', email, password);
-}
+        returnSecureToken: true,
+      });
+    
+      const token = response.data.idToken;
+    
+      return token;
+    }
+    
+    export function createUser(email, password) {
+      return authenticate('signUp', email, password);
+    }
+    
+    export function login(email, password) {
+      return authenticate('signInWithPassword', email, password);
+    }
